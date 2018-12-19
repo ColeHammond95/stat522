@@ -1,0 +1,235 @@
+---
+title: <center>"Deviant Behavior and Norms"</center>
+sub: <center>"A lab experiment on the effect of norms on enforcement behavior"</center>
+author: <center>"Cole Hammond"</center>
+date: <center>"December 2018"</center>
+output: html_document
+---
+```{r setup, include=FALSE}
+#IMPORTANT: You many need to run "knitr"" to get this doc to work right
+setwd("~/Documents/DBS 522")
+getwd()
+punishers <- read.csv("PunishersModified.csv")
+```
+<center>![](https://i.imgur.com/9eUDAye.png){width=250px}</center>
+
+#<span style="color:#01256e">Introduction</span>
+###Abstract
+This experiment examines the efficacy of norms on enforcement behavior. Specifically, we investigate how combining normative messaging with a real punishment affects the frequency and magnitude of participants' punishments. We find that normative messaging and does seem to increase a participants willingness to pusnish, but could not prove the trend with statistical confidence. Additionally, we did definitviely find that as the magnitude of a lie increases, the punishmeners were willing to increase their punishment in a proportinal manner. I believe that these results have implications for both researchers and practitioners alike.
+
+###Motivation
+As a species, we are esspecially skilled at creating rules. Formal and informal standards exhist for nearly all human behavior. Unfortuatley, while we may be skilled at creating rules, we're not always so great at following them. 
+
+Experience shows us that the violation of rules must almost always be accompanied by consiquences to maintain their stregth. This is especially important given the growing body of research has shown that individuals tend to be conditionally cooperative by nature (Fischbacher et. al, 2001). Therefore, in order to ensure the cooperation of any kind of group, members of a group often resort to punishment tactics to deter anti-social behavior.Unfortunatley, punishment is an inherently precarious behavior that often puts punishers at risk of physical and social reprisals.
+
+Despite the importance of sanctions to keep social order, research has also shown that there is a negative correlation between group size and perception of responsibility (Darley & Latane. 1968) despite the fact that deviations from norms are statistically more likley to occur as group size increases.
+
+In that spirit, our student-run project examines the effect of normative primes on punishment behavior with specific regart to willingness to punish. To acomplish this, we rely heavily on the articulation of norms as defined by Dr. Bicchierri in her work "Norms in the Wild" (Bicchierri, 2016).
+
+There is some literature on how normative information impacts cheating behavior, but there is limited understanding about how punishers are impacted by normative information (Bicchierri et al., 2018). The analysis of the data should yeild interesting and relavant results.
+
+###Experimental Procedure
+In stage one of the experiment, participants were asked to roll a 20-seded die and self-report the results. The dice rollers where awarded a number of raffle tickets equal to their self-reported roll. Their actual rolls were secretly recorded.
+
+In stage two of the experiment, punishers were shown four decison sets from the earlier participants. This means that each participant made four seperate puishment decisions based on different actual and reported rolls. The second and fourth decision sets were always identical across the punishesr to try to be certain that each punisher would see at least two lies.
+
+Before they make their punishment decisions, participants will be randomly sorted into three treatment groups. Those in the control treatment will experience the experiment exactly as described. In our experimental treatments, participants will be primed with a empirical or social norm before they make their punishment decisions. 
+
+**Experimental Treatment Primes**
+
+* "In a previous experiment, the majority of the punishers in this situation punished decision makers who misrepresented their actual die outcome."
+* "In a previous experiment, the majority of the punishers in this situation did not approve of other punishers not punishing participants who misrepresented their actual die outcome."
+
+*Note: Original project was conducted in BDS 501 with Alys Ferrgamo and Marco Bauer. This may explain similiarites between data, analysis and motivation. Please let us know if you have any questions or concerns.*
+
+#<span style="color:#01256e">Analytical Strategy</span>
+
+There were two primary measurements of punishment that I used to analyize of our results. 
+First, I examined how many lies each participant punished as a percentage of the total lies they saw. I call this punishment frequency. If a participant viewed four lies and punished three of them, then he or she would have been given a punishment frequency of 75%.
+
+Second, I examined the magnitude of each participant's punishment. To do this, participants’ punishments were measured relative to the size of the lies they saw. If the participant saw a decision where a dice roller lied to win three extra tickets, and that punisher then decided to pelanize the roller by three tickets, they were given a punishment magnitude of 100%. Its important to note that this measurement mechanism does allow for magnitudes greater than 100%. A punisher may have seen the decision set of a dice roller who rolled a 10 but reported a roll of 20. If a participant punished this die roller by removing all 20 of the die roller’s tickets, he or she would be assigned a punishment magnitude of 200%.
+
+I believe that these two punishment measurements were enough to capture most of the important information that each punisher gave
+
+With this in mind, we can generate our hypotheses.
+
+###Hypotheses
+
+Our **first hypothesis** was that:
+
+*Punishers who are primed with normative messaging are more likely to elicit a severe punishment against dice rollers who misrepresented their actual die outcome than those primed with empirical messaging or no information.*
+
+Or in other words, 
+
+$H_a:punishment~magnitude_{social} > punishment~magnitude_{empirical} > punishment~magnitude_{control}$ 
+
+$H_0:punishment~magnitude_{social} \le punishment~magnitude_{empirical} \le punishment~magnitude_{control}$ 
+
+Our **second hypothesis** was that:
+
+*Punishers who are primed with normative messaging are more likely to punish dice rollers who misrepresented their actual die outcome than those primed with empirical messaging or no information.*
+
+Or in other words, 
+
+$H_a:percentage~punished_{social} > percentage~punished_{empirical} > percentage~punished_{control}$
+
+$H_0:percentage~punished_{social} \le percentage~punished_{empirical} \le percentage~punished_{control}$
+
+And our **third hypothesis** was that:
+
+*Across all treatment groups, a bigger deviation between reported score and actual score will receive more severe punishments.*
+
+$H_a:\beta_{1}>0$
+
+$H_0:\beta_{1}\le0$
+
+Where $punishment~size= \beta_{0}+\beta_{1}lie~size$
+
+For the purposes of this paper, I will only be testing our first and third hyothesis. Alys preformed most of the analysis for the second hypothesis, so she will discuss those results in her paper. 
+
+### Data Collection and Cleaning
+In stage 1 of our experiment we collected data from 91 dice rollers which then allowed us to create 90 unique deicion sets to show to our punishers. Each punisher saw a minumim on two lies and a maximum of four. 
+
+Our initial dataset contained 102 unique participants evenly distibuted across three treatment conditions. Unfortunatley, due to improper randomization procedures, our control treatment saw decision sets containing only two lies than did our experimental treatments. For this reason, we gathered another 30 respondents whose decision sets were randomly generated from the pool of decisions that our two experimental treatments had seen. This introduced much more noise into the experiment than we would have liked, but all of our findings hold true regardless of which control we use for comparison purposes. 
+
+I also observed much more anitsocial punishment than I had anticipated I would. A significant proportion of participants punished responsents who were honest. While I do think this is real behavior as antisocial punishment is a well documented phenomenon (Herrmann et al 2008), I decided to remove these participants from the data for ease of analysis. In total, this meant cleaning a total of 26 participants from our dataset, leaving us with a total of 104 unique observations to analyze. 
+
+Treatment | # Participants
+----------|---------------
+Origional Control | 24
+New Control | 24
+Empirical Norms | 30
+Social Norms | 26
+
+*Note:* Moving forward, I have decided to use the new control in the reporting of results and in the testing of hypotheses. All results that prove either significant or insignificant do so regardless of which control treatment is used.
+
+We recorded each decision set shown to the participant, including the actual and reported roll shown in each decision, and how much the participant chose to punish them by. These three variables gave us information on the each decision including:
+
+* If the decision was a lie
+* How big of a lie it was
+* How the size of the punishment in response to these two variables
+
+I did a quick cleaning of the initial survey data in excel to give us bianary inticator outputs to indicate if each punsiher saw 2, 3, or 4 lies in their decision set.
+```{r, include = FALSE}
+#These variables are named X2.Lies, X3.Lies and X4.Lies respectivley.
+```
+I also added one output column indicating the punishment magnitude,
+($\frac{\sum_{i=1}^4 punishment_i}{\sum_{i=1}^4 lie_i}$)
+and one indicating percentage punished
+($\frac{Lies~seen}{Lies~punished}$).
+```{r, include = FALSE}
+#The above mentioned variables are the last to columns of the dataset
+```
+```{r, include = FALSE}
+newcontrol <- subset(punishers, punishers$Treatment == "New Control")
+control<-subset(punishers,punishers$Treatment=="Control")
+Empirical <- subset(punishers, punishers$Treatment == "Empirical")
+Social <- subset(punishers, punishers$Treatment == "Social")
+```
+
+###Methods
+To test our first two hypotheses Professor Dimant recommended using a Wilcoxon Rank Sum Test (Mann-Whitney U) because the data tested between group means and could not be assumed to be parametric. 
+
+We tested our third hypothesis using a regression model, because we wanted to know how good one variable (the magnitude of lies a punisher saw) was a good predictor of another variable (the amount that punisher decided to punish).
+```{r, include = FALSE}
+newcontrol$Magnitude<-newcontrol$X..Magnitude.of.Lies.Punished*100
+Empirical$Magnitude<-Empirical$X..Magnitude.of.Lies.Punished*100
+control$Magnitude<-control$X..Magnitude.of.Lies.Punished*100
+Social$Magnitude<-Social$X..Magnitude.of.Lies.Punished*100
+par(mfcol=c(1,3))
+
+hist(Empirical$Magnitude, col="#cfd0d2",xlim=c(0,300), ylim=c(0,20), main="Empirical", xlab="Magnitude of Punishment in %",cex.lab=1.5, cex.axis=1.5, cex.main=2.5, cex.sub=2.5,breaks=10)
+
+hist(control$Magnitude, col="#95001a",xlim=c(0,300), ylim=c(0,20), main="Control", xlab="Magnitude of Punishment in %",cex.lab=1.5, cex.axis=1.5, cex.main=2.5, cex.sub=2.5,breaks=10)
+
+hist(Social$Magnitude, col = "#01256e", main="Social", xlab="Magnitude of Punishment in %",cex.lab=1.5, cex.axis=1.5, cex.main=2.5, cex.sub=2.5,ylim=c(0, 20),xlim=c(0,300), breaks=15)
+```
+
+#<span style="color:#01256e">Results</span>
+```{r, include = FALSE}
+summary(newcontrol$Magnitude)
+summary(Empirical$Magnitude)
+summary(Social$Magnitude)
+```
+###Hypothesis 1
+We will being by examining the results of our punishers punishment magnitude. As we can see from the results bellow, punishers across all treatments tended to take away exactly the same amount of tickets that their dice rollers lied to recive. This explains our concentration of magnitudes around 100% in the histograms bellow, as well as the average median of 100% we see across the treatment.
+
+---| Punishment  Min  | Punishment Median | Punishment Mean | Punishment Max
+----------|--------|-------|-------|-----
+Control Treatment| 0% | 100% | 97.2% | 221.4% 
+Empirical Norm Treatment | 0% | 100% | 100 112.8% | 250%
+Social Norm Treatment | 0% | 100% | 123.1% | 322.7%
+
+```{r, include = FALSE}
+#Note that these are just saved outputs for the histogram designed above. It was the easiest way I found to present the reults in a neat way.
+```
+
+<span style="color:white"># Participants</span> | Magnitude of Punishments by Treatment | <span style="color:white">test</span>
+----------|----------------|-----
+![Imgur](https://i.imgur.com/g09tXNX.png) | ![Imgur](https://i.imgur.com/2uCyjcw.png) | ![Imgur](https://i.imgur.com/ybTLRbu.png)
+
+The histograms above do seem to show some effect of our tratment and we do see the average punsihment magnitidue increase across treatments as we would have expected. To see if these results are significant enough to prove our first hypothesis, I peformed three one-sided Wilcoxon Rank Sum Tests.
+
+1. $punishment~magnitude_{control} < punishment~magnitude_{social}$ p-value = 0.13
+2. $punishment~magnitude_{control} < punishment~magnitude_{empirical}$ p-value = 0.11
+3. $punishment~magnitude_{empirical} < punishment~magnitude_{social}$ p-value = 0.61
+
+**Hypothesis Verdict**
+Unfortunatley, to prove our first hypothesis all three of these tests would have needed to be statistically significant, and none of the tests passes the 0.05 threshold common in the social sciences needed to establish the significance of a finding.
+
+```{r, include = FALSE}
+wilcox.test(newcontrol$Magnitude, Social$Magnitude, alternative="less")
+wilcox.test(newcontrol$Magnitude, Empirical$Magnitude, alternative="less")
+wilcox.test(Social$Magnitude, Empirical$Magnitude, alternative="greater")
+```
+###Hypothesis 3
+Finally, I tested our third hypothesis. I created a linear regression that would measure the relationship of the total number of tickets earned by lying (between 14 & 44) seen by each punisher and the amount of tickets that a punisher penalized a dice roller by.
+This is mostly just a rationality check to see if punishers did respond to the size of the lies that they saw. If punishers penalized by the same numbre of tickets no matter the size of the lie, this would have serious implications for our experiment.
+```{r,}
+summary(lm(punishers$Total.Lie.Magnitude~punishers$Total.Punish.magnitude))
+```
+**Hypothesis Verdict**
+This would strongly confirm our thrid hypothesis. The p-value for $\beta_1$ obtained in this regression gives us overwhelming support to reject our null that $\beta_1 \le 0$. For each aditional ticket a dice roller lied by, punishers penalized them by .38 tickets. This is a pretty strong relationship when we consider that punishers who chose to penalize by less than a 1:1 ratio ussually took away no tickets at all (see magnitude charts). 
+
+###Confounders Check
+```{r, include = FALSE}
+#number of lies seen by each punisher
+punishers$Lies<-1+punishers$X2.Lies*1+punishers$X3.Lies*2+punishers$X4.Lies*3
+```
+The most important potential confounder in my opinion was the number of lies that each participant viewed in their decision set. A individual participant viewed a minimum of two lies, or half of the decisions they saw, and a maximum of four lies, which would be every decision they saw. 
+
+It occured to me that the lie set itself may comunicate an empirical norm to participants. It might have been the case that seeing more lies inspired a deeper sense of moral outrage among our participants, and inspired them to punish bad decisions more harshly. Alternatively, seeing more lies many have signaled to the participants that most dice rollers thought that lying under these circumstances was morally permissible.
+
+To test this, I decided to examine if the number of lies had a predictive effect on participants second and fourth punsihment. I chose these two punishments because the lies shown to them were always axactly the same for these two decsions. Every participant's second and fourth decision seen were identical lies. Note that the total amount of lies shown in these two decisions was equal to 14, so we would expect the average punisher to penalize these decisions by about 14.
+
+Therefore, all else being equal, we would expect them to punish these lies roughly the same no matter how many lies they were shown in their decision set. 
+```{r}
+#Does seeing more lies effect punihsment on different decisions?
+summary(lm(punishers$Punish2.4~factor(punishers$Lies)))
+```
+Form the extremly low p-values of this output, we can see that seeing more lies in total did not seem to make the punishers more or less inclined to punish. 
+
+#<span style="color:#01256e">Discussion</span>
+
+I was really grateful to have enough experience in R to try to preform some of these analyses for my group. I think our results were promising and trended in the right direction, but it didn't supprise me that we were not able to prove them with statistical significance. After the having to cut out so much of the data through cleaning and having to gather a seperate control and throw out our old control treatment, I knew that we were likley to risk being severly underpowered. Unofortunatley, it was important to use to match punishers and dice rollers on a one to one basis. We felt it was important to implement at least some of our punishers deicions, and so a one to one match was crucial.
+
+Unfortunatley, this doubled the number of participants our experiment needed and made it exremley difficult to gather more participants once we saw that we would likley need more. We were under serious time constraints with the end of the semester fast approaching, and so we had to work with the results we had.
+
+If I were to run this experiment again, I would:
+
+1. Be sure to adhere to proper randomization procedures when designing the decision sets for the treatments.
+2. Remove the dice rollers from the equation, and keep the experiment hypothetical for the punishers.
+3. Present punishers with a single decision instead of four. This would have made our end analysis much easier. 
+
+### References
+Bicchieri, C., Dimant, E., & Xiao, E. (2017). Deviant or Wrong? The Effects of Norm Information on the Efficacy of Punishment (No. 2017-14).
+
+Bicchieri, Cristina. *Norms in the wild: How to diagnose, measure, and change social norms*. Oxford University Press, 2016.
+
+Darley, J.M. and Latané, B., 1968. Bystander intervention in emergencies: diffusion of responsibility. *Journal of personality and social psychology*, 8(4p1), p.377.
+
+Fischbacher, U., Gächter, S., & Fehr, E. (2001). Are people conditionally cooperative? Evidence from a public goods experiment. *Economics letters*, 71 (3), 397-404.
+
+```{r}
+
+```
